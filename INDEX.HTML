@@ -1,236 +1,1013 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Franklin Lima | 40 Anos</title>
 
-<title>Franklin Lima - 40 Anos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #020202;
+      --black-2: #080808;
+      --silver: #c9c9c9;
+      --silver-2: #8f8f8f;
+      --white: #f5f5f5;
+      --glass: rgba(255, 255, 255, 0.08);
+      --border: rgba(255, 255, 255, 0.22);
+      --shadow: rgba(255, 255, 255, 0.22);
+    }
 
-<style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-body {
-  background: #000;
-  color: #fff;
-  font-family: 'Playfair Display', serif;
-  overflow-x: hidden;
-}
+    html {
+      scroll-behavior: smooth;
+    }
 
-/* HEADER */
-.header {
-  text-align: center;
-  padding: 40px 20px;
-  position: relative;
-}
+    body {
+      min-height: 100vh;
+      background: var(--black);
+      color: var(--white);
+      font-family: "Montserrat", sans-serif;
+      overflow-x: hidden;
+    }
 
-.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
+    button,
+    input {
+      font-family: inherit;
+    }
 
-.logo-container img {
-  width: 80px;
-}
+    .page {
+      width: 100%;
+      min-height: 100vh;
+      position: relative;
+      overflow-x: hidden;
+    }
 
-.nome {
-  font-size: 28px;
-  letter-spacing: 2px;
-}
+    /* FUNDO INICIAL */
+    .intro {
+      min-height: 100vh;
+      width: 100%;
+      display: grid;
+      place-items: center;
+      padding: 28px 18px;
+      position: fixed;
+      inset: 0;
+      z-index: 20;
+      background:
+        radial-gradient(circle at 20% 12%, rgba(255,255,255,0.28), transparent 20%),
+        radial-gradient(circle at 88% 18%, rgba(255,255,255,0.16), transparent 22%),
+        linear-gradient(135deg, #000 0%, #111 34%, #d7d7d7 52%, #0b0b0b 70%, #000 100%);
+      transition: opacity 1s ease, visibility 1s ease, transform 1s ease;
+    }
 
-/* EFEITO LUZ CRISTAL */
-.luzes {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(#ffffff22 1px, transparent 1px);
-  background-size: 30px 30px;
-  animation: brilho 6s infinite linear;
-}
+    .intro.hide {
+      opacity: 0;
+      visibility: hidden;
+      transform: scale(1.05);
+      pointer-events: none;
+    }
 
-@keyframes brilho {
-  from {transform: translateY(0);}
-  to {transform: translateY(100px);}
-}
+    .party-layer {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      pointer-events: none;
+      opacity: 0.78;
+    }
 
-/* FRASE */
-.frase-box {
-  margin: 80px auto;
-  width: 90%;
-  max-width: 400px;
-  padding: 20px;
-  border: 1px solid #444;
-  text-align: center;
-  cursor: pointer;
-  transition: 0.5s;
-}
+    .spark {
+      position: absolute;
+      width: var(--s);
+      height: var(--s);
+      left: var(--x);
+      top: -12%;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255,255,255,0.98), rgba(255,255,255,0.22) 48%, transparent 72%);
+      filter: blur(0.2px);
+      animation: fall var(--d) linear infinite;
+      animation-delay: var(--delay);
+    }
 
-.frase {
-  display: none;
-  text-align: center;
-  padding: 20px;
-  font-size: 18px;
-  opacity: 0;
-  transition: 1s;
-}
+    .ribbon {
+      position: absolute;
+      width: 2px;
+      height: 70px;
+      left: var(--x);
+      top: -18%;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.65), transparent);
+      transform: rotate(var(--r));
+      animation: fallRibbon var(--d) linear infinite;
+      animation-delay: var(--delay);
+      opacity: 0.55;
+    }
 
-.frase.show {
-  display: block;
-  opacity: 1;
-}
+    @keyframes fall {
+      0% { transform: translate3d(0, -10vh, 0) rotate(0deg); opacity: 0; }
+      12% { opacity: 1; }
+      100% { transform: translate3d(var(--drift), 118vh, 0) rotate(360deg); opacity: 0; }
+    }
 
-/* IMAGEM */
-.img-section {
-  margin: 80px 0;
-  opacity: 0;
-  transform: translateX(100px);
-  transition: 1s;
-}
+    @keyframes fallRibbon {
+      0% { transform: translate3d(0, -10vh, 0) rotate(var(--r)); opacity: 0; }
+      15% { opacity: 0.7; }
+      100% { transform: translate3d(var(--drift), 118vh, 0) rotate(calc(var(--r) + 240deg)); opacity: 0; }
+    }
 
-.img-section.show {
-  opacity: 1;
-  transform: translateX(0);
-}
+    .envelope-stage {
+      width: min(92vw, 500px);
+      min-height: 560px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 22px;
+      position: relative;
+      z-index: 2;
+    }
 
-.img-section img {
-  width: 90%;
-  border-radius: 10px;
-}
+    .pre-title {
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.36em;
+      font-size: clamp(0.78rem, 2.8vw, 0.98rem);
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+      text-transform: uppercase;
+    }
 
-/* DATA */
-.info {
-  text-align: center;
-  margin: 60px 20px;
-  opacity: 0;
-  transform: translateY(50px);
-  transition: 1s;
-}
+    .envelope {
+      width: min(88vw, 420px);
+      height: 270px;
+      position: relative;
+      filter: drop-shadow(0 26px 40px rgba(0,0,0,0.78));
+      perspective: 900px;
+      cursor: pointer;
+    }
 
-.info.show {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .envelope-body {
+      position: absolute;
+      inset: 0;
+      border-radius: 18px;
+      background:
+        linear-gradient(145deg, rgba(18,18,18,0.98), rgba(0,0,0,0.98)),
+        radial-gradient(circle at 50% 0%, rgba(255,255,255,0.2), transparent 45%);
+      border: 1px solid rgba(255,255,255,0.26);
+      overflow: hidden;
+      box-shadow:
+        inset 0 0 0 1px rgba(255,255,255,0.04),
+        inset 0 25px 45px rgba(255,255,255,0.05),
+        0 0 55px rgba(255,255,255,0.1);
+    }
 
-/* BOTÃO */
-.btn {
-  background: white;
-  color: black;
-  padding: 15px;
-  border: none;
-  margin-top: 20px;
-  cursor: pointer;
-  width: 80%;
-  max-width: 300px;
-}
+    .envelope-body::before,
+    .envelope-body::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
 
-/* FORM */
-.form {
-  display: none;
-  margin-top: 20px;
-}
+    .envelope-body::before {
+      clip-path: polygon(0 0, 50% 56%, 100% 0, 100% 100%, 0 100%);
+      background:
+        linear-gradient(140deg, rgba(255,255,255,0.1), transparent 35%),
+        linear-gradient(40deg, rgba(255,255,255,0.05), transparent 45%);
+      border-top: 1px solid rgba(255,255,255,0.18);
+    }
 
-.form input {
-  padding: 12px;
-  width: 80%;
-  max-width: 300px;
-  margin-bottom: 10px;
-}
+    .envelope-body::after {
+      clip-path: polygon(0 100%, 50% 42%, 100% 100%);
+      background: linear-gradient(to top, rgba(255,255,255,0.1), rgba(255,255,255,0.02));
+    }
 
-/* RESPONSIVO */
-@media (min-width: 768px) {
-  .nome {
-    font-size: 40px;
-  }
+    .flap {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 62%;
+      background: linear-gradient(180deg, #1c1c1c, #050505);
+      border: 1px solid rgba(255,255,255,0.28);
+      clip-path: polygon(0 0, 100% 0, 50% 100%);
+      transform-origin: top center;
+      transition: transform 1s cubic-bezier(.2,.9,.2,1.1);
+      z-index: 4;
+      border-radius: 18px 18px 0 0;
+    }
 
-  .frase {
-    font-size: 22px;
-  }
-}
-</style>
+    .envelope.open .flap {
+      transform: rotateX(178deg);
+    }
+
+    .seal {
+      position: absolute;
+      left: 50%;
+      top: 49%;
+      width: 116px;
+      height: 116px;
+      transform: translate(-50%, -50%);
+      z-index: 6;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(255,255,255,0.44);
+      background:
+        radial-gradient(circle at 35% 28%, rgba(255,255,255,0.42), transparent 28%),
+        linear-gradient(145deg, #0a0a0a, #000);
+      box-shadow: 0 0 0 8px rgba(255,255,255,0.035), 0 0 38px rgba(255,255,255,0.16);
+      transition: transform 0.8s ease, opacity 0.8s ease;
+    }
+
+    .seal img {
+      width: 88px;
+      height: 88px;
+      object-fit: cover;
+      border-radius: 50%;
+      filter: contrast(1.05) brightness(1.15);
+    }
+
+    .envelope.open .seal {
+      transform: translate(-50%, -50%) scale(0.7) rotate(24deg);
+      opacity: 0;
+    }
+
+    .letter-preview {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      width: 82%;
+      height: 190px;
+      transform: translate(-50%, 34%);
+      border-radius: 16px;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,0.95), rgba(182,182,182,0.95)),
+        linear-gradient(45deg, transparent, rgba(255,255,255,0.3));
+      color: #070707;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+      text-align: center;
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.12em;
+      box-shadow: 0 24px 50px rgba(0,0,0,0.55);
+      z-index: 2;
+      transition: transform 1.05s cubic-bezier(.2,.9,.2,1.05), opacity 0.8s ease;
+      opacity: 0;
+    }
+
+    .envelope.open .letter-preview {
+      transform: translate(-50%, -118%);
+      opacity: 1;
+    }
+
+    .open-text {
+      color: rgba(255,255,255,0.9);
+      letter-spacing: 0.22em;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      text-align: center;
+      animation: pulseText 1.8s ease-in-out infinite;
+    }
+
+    @keyframes pulseText {
+      0%,100% { opacity: 0.55; transform: translateY(0); }
+      50% { opacity: 1; transform: translateY(-2px); }
+    }
+
+    /* SITE REAL */
+    .site {
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(30px);
+      transition: opacity 1.1s ease, visibility 1.1s ease, transform 1.1s ease;
+      min-height: 100vh;
+      position: relative;
+      background:
+        radial-gradient(circle at 15% 8%, rgba(255,255,255,0.12), transparent 22%),
+        radial-gradient(circle at 85% 16%, rgba(255,255,255,0.08), transparent 20%),
+        radial-gradient(circle at 50% 100%, rgba(255,255,255,0.08), transparent 32%),
+        linear-gradient(180deg, #000 0%, #050505 48%, #000 100%);
+    }
+
+    .site.show {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .silver-noise {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(circle at 20% 20%, rgba(255,255,255,0.09) 0 1px, transparent 1.6px),
+        radial-gradient(circle at 70% 40%, rgba(255,255,255,0.06) 0 1px, transparent 1.4px);
+      background-size: 46px 46px, 72px 72px;
+      opacity: 0.48;
+      animation: floatNoise 16s linear infinite;
+    }
+
+    @keyframes floatNoise {
+      from { transform: translateY(0); }
+      to { transform: translateY(-90px); }
+    }
+
+    .balloons {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      overflow: hidden;
+      opacity: 0.55;
+    }
+
+    .balloon {
+      position: absolute;
+      width: var(--w);
+      height: calc(var(--w) * 1.22);
+      left: var(--x);
+      top: var(--y);
+      border-radius: 50% 50% 47% 47%;
+      background:
+        radial-gradient(circle at 35% 22%, rgba(255,255,255,0.45), transparent 18%),
+        radial-gradient(circle at 65% 72%, rgba(255,255,255,0.1), transparent 22%),
+        linear-gradient(145deg, #171717, #000 68%);
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: inset -16px -20px 28px rgba(0,0,0,0.85), 0 18px 38px rgba(0,0,0,0.6);
+      animation: balloonFloat var(--d) ease-in-out infinite;
+      animation-delay: var(--delay);
+    }
+
+    .balloon::after {
+      content: "";
+      position: absolute;
+      left: 50%;
+      bottom: -80px;
+      width: 1px;
+      height: 88px;
+      background: linear-gradient(to bottom, rgba(255,255,255,0.26), transparent);
+    }
+
+    @keyframes balloonFloat {
+      0%,100% { transform: translate3d(0, 0, 0) rotate(-2deg); }
+      50% { transform: translate3d(14px, -26px, 0) rotate(3deg); }
+    }
+
+    .section {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 78px 20px;
+    }
+
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      padding-top: 70px;
+    }
+
+    .brand-card {
+      width: min(92vw, 520px);
+      padding: 34px 24px 38px;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 28px;
+      background:
+        linear-gradient(160deg, rgba(255,255,255,0.08), rgba(255,255,255,0.02)),
+        rgba(0,0,0,0.54);
+      box-shadow: 0 0 70px rgba(255,255,255,0.08), inset 0 0 0 1px rgba(255,255,255,0.05);
+      backdrop-filter: blur(12px);
+      animation: revealUp 1.1s ease both;
+    }
+
+    .brand-logo {
+      width: min(72vw, 300px);
+      height: auto;
+      border-radius: 18px;
+      display: block;
+      margin: 0 auto 22px;
+      filter: drop-shadow(0 18px 24px rgba(0,0,0,0.72));
+    }
+
+    .brand-name {
+      font-family: "Cinzel", serif;
+      font-size: clamp(2rem, 9vw, 4.8rem);
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      line-height: 1.05;
+      color: transparent;
+      background: linear-gradient(100deg, #777, #fff, #a5a5a5, #f7f7f7, #6d6d6d);
+      background-size: 260% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      animation: silverMove 5s ease-in-out infinite;
+      text-shadow: 0 0 24px rgba(255,255,255,0.05);
+    }
+
+    @keyframes silverMove {
+      0%,100% { background-position: 0% center; }
+      50% { background-position: 100% center; }
+    }
+
+    .age {
+      margin-top: 6px;
+      font-family: "Cinzel", serif;
+      color: rgba(255,255,255,0.72);
+      letter-spacing: 0.5em;
+      font-size: 0.82rem;
+      text-transform: uppercase;
+    }
+
+    .quote {
+      margin: 36px auto 0;
+      max-width: 650px;
+      font-family: "Cinzel", serif;
+      font-size: clamp(1.18rem, 5.3vw, 2.3rem);
+      line-height: 1.55;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.88);
+    }
+
+    .quote span {
+      display: block;
+      margin-top: 6px;
+      color: var(--white);
+      text-shadow: 0 0 26px rgba(255,255,255,0.26);
+    }
+
+    .divider {
+      width: min(70%, 360px);
+      height: 1px;
+      margin: 32px auto 0;
+      background: linear-gradient(to right, transparent, rgba(255,255,255,0.62), transparent);
+      position: relative;
+    }
+
+    .divider::after {
+      content: "✦";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      color: #fff;
+      background: #050505;
+      padding: 0 14px;
+      font-size: 0.9rem;
+    }
+
+    .photo-section {
+      min-height: 76vh;
+      display: grid;
+      align-items: center;
+    }
+
+    .photo-wrap {
+      width: min(100%, 900px);
+      margin: 0 auto;
+      display: grid;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .photo-frame {
+      position: relative;
+      width: min(100%, 760px);
+      margin: 0 auto;
+      border-radius: 30px;
+      padding: 9px;
+      background: linear-gradient(135deg, rgba(255,255,255,0.75), rgba(255,255,255,0.08), rgba(255,255,255,0.42));
+      box-shadow: 0 30px 80px rgba(0,0,0,0.72), 0 0 55px rgba(255,255,255,0.08);
+      transform: translateX(-110px) rotate(-2deg);
+      opacity: 0;
+      transition: transform 1.15s cubic-bezier(.2,.8,.2,1), opacity 1s ease;
+    }
+
+    .photo-frame.show {
+      transform: translateX(0) rotate(-1deg);
+      opacity: 1;
+    }
+
+    .photo-frame::before {
+      content: "";
+      position: absolute;
+      inset: 18px;
+      border: 1px solid rgba(255,255,255,0.22);
+      border-radius: 23px;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .party-photo {
+      width: 100%;
+      display: block;
+      border-radius: 24px;
+      filter: contrast(1.1) saturate(0.85) brightness(0.88);
+    }
+
+    .photo-caption {
+      text-align: center;
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.2em;
+      color: rgba(255,255,255,0.7);
+      text-transform: uppercase;
+      font-size: 0.78rem;
+    }
+
+    .actions {
+      display: grid;
+      gap: 28px;
+      max-width: 620px;
+      margin: 0 auto;
+      padding-bottom: 100px;
+    }
+
+    .lux-button {
+      width: 100%;
+      min-height: 68px;
+      padding: 18px 20px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.28);
+      background:
+        radial-gradient(circle at 20% 0%, rgba(255,255,255,0.18), transparent 34%),
+        linear-gradient(145deg, #101010, #000);
+      color: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      cursor: pointer;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      font-weight: 600;
+      box-shadow: 0 18px 42px rgba(0,0,0,0.55), inset 0 0 0 1px rgba(255,255,255,0.05);
+      transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .lux-button:hover,
+    .lux-button:focus-visible {
+      transform: translateY(-3px);
+      border-color: rgba(255,255,255,0.62);
+      box-shadow: 0 26px 54px rgba(0,0,0,0.72), 0 0 28px rgba(255,255,255,0.1);
+      outline: none;
+    }
+
+    .icon {
+      font-size: 1.3rem;
+      filter: grayscale(1);
+      opacity: 0.9;
+    }
+
+    .reveal-panel {
+      display: grid;
+      grid-template-rows: 0fr;
+      opacity: 0;
+      transition: grid-template-rows 0.7s ease, opacity 0.7s ease, transform 0.7s ease;
+      transform: translateY(-12px);
+    }
+
+    .reveal-panel.open {
+      grid-template-rows: 1fr;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .reveal-inner {
+      overflow: hidden;
+    }
+
+    .info-card,
+    .form-card {
+      border-radius: 26px;
+      padding: 26px 22px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.18);
+      background: rgba(255,255,255,0.055);
+      backdrop-filter: blur(12px);
+      box-shadow: inset 0 0 0 1px rgba(255,255,255,0.04);
+    }
+
+    .info-card h2 {
+      font-family: "Cinzel", serif;
+      font-size: clamp(1.25rem, 5vw, 2rem);
+      letter-spacing: 0.18em;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    .info-card strong {
+      display: block;
+      font-family: "Cinzel", serif;
+      font-size: clamp(2.5rem, 14vw, 5rem);
+      line-height: 0.95;
+      color: transparent;
+      background: linear-gradient(110deg, #aaa, #fff, #828282);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .info-card p {
+      color: rgba(255,255,255,0.76);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      letter-spacing: 0.04em;
+    }
+
+    .form-card {
+      display: grid;
+      gap: 16px;
+    }
+
+    .form-card label {
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.76);
+      font-size: 0.82rem;
+    }
+
+    .form-card input {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(0,0,0,0.72);
+      color: #fff;
+      font-size: 1rem;
+      outline: none;
+      transition: border-color 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .form-card input:focus {
+      border-color: rgba(255,255,255,0.66);
+      box-shadow: 0 0 0 4px rgba(255,255,255,0.06);
+    }
+
+    .submit-button {
+      width: 100%;
+      border: none;
+      border-radius: 18px;
+      min-height: 58px;
+      cursor: pointer;
+      color: #070707;
+      font-weight: 800;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      background: linear-gradient(120deg, #8b8b8b, #fff, #9d9d9d);
+      box-shadow: 0 18px 38px rgba(0,0,0,0.38);
+      transition: transform 0.25s ease, filter 0.25s ease;
+    }
+
+    .submit-button:hover,
+    .submit-button:focus-visible {
+      transform: translateY(-3px);
+      filter: brightness(1.08);
+      outline: none;
+    }
+
+    .confirmed {
+      display: none;
+      margin-top: 14px;
+      padding: 18px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.22);
+      background: rgba(255,255,255,0.08);
+      color: #fff;
+      font-family: "Cinzel", serif;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      animation: confirmPop 0.75s ease both;
+    }
+
+    .confirmed.show {
+      display: block;
+    }
+
+    @keyframes confirmPop {
+      0% { opacity: 0; transform: scale(0.9) translateY(12px); }
+      70% { transform: scale(1.03) translateY(0); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+
+    .mini-list {
+      display: none;
+      margin-top: 12px;
+      color: rgba(255,255,255,0.58);
+      font-size: 0.75rem;
+      line-height: 1.5;
+    }
+
+    .mini-list.show {
+      display: block;
+    }
+
+    @keyframes revealUp {
+      from { opacity: 0; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (min-width: 760px) {
+      .section {
+        padding-left: 34px;
+        padding-right: 34px;
+      }
+
+      .photo-wrap {
+        grid-template-columns: 1fr;
+      }
+
+      .actions {
+        gap: 34px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .envelope-stage {
+        min-height: 520px;
+      }
+
+      .envelope {
+        height: 235px;
+      }
+
+      .seal {
+        width: 96px;
+        height: 96px;
+      }
+
+      .seal img {
+        width: 74px;
+        height: 74px;
+      }
+
+      .letter-preview {
+        height: 160px;
+        font-size: 0.86rem;
+      }
+
+      .brand-card {
+        padding: 28px 18px 32px;
+      }
+
+      .brand-logo {
+        width: min(74vw, 260px);
+      }
+
+      .brand-name {
+        letter-spacing: 0.12em;
+      }
+
+      .age {
+        letter-spacing: 0.34em;
+      }
+
+      .quote {
+        letter-spacing: 0.06em;
+      }
+
+      .photo-frame {
+        border-radius: 24px;
+        padding: 7px;
+      }
+
+      .party-photo {
+        border-radius: 19px;
+      }
+
+      .lux-button {
+        font-size: 0.78rem;
+        letter-spacing: 0.09em;
+      }
+    }
+  </style>
 </head>
-
 <body>
+  <main class="page">
+    <section class="intro" id="intro" aria-label="Abertura do convite">
+      <div class="party-layer" aria-hidden="true">
+        <span class="spark" style="--x: 8%; --s: 5px; --d: 8s; --delay: -1s; --drift: 24px;"></span>
+        <span class="spark" style="--x: 16%; --s: 8px; --d: 10s; --delay: -6s; --drift: -28px;"></span>
+        <span class="spark" style="--x: 25%; --s: 4px; --d: 7s; --delay: -3s; --drift: 36px;"></span>
+        <span class="spark" style="--x: 37%; --s: 7px; --d: 11s; --delay: -8s; --drift: -40px;"></span>
+        <span class="spark" style="--x: 46%; --s: 5px; --d: 9s; --delay: -2s; --drift: 32px;"></span>
+        <span class="spark" style="--x: 58%; --s: 9px; --d: 12s; --delay: -7s; --drift: -25px;"></span>
+        <span class="spark" style="--x: 68%; --s: 4px; --d: 8s; --delay: -4s; --drift: 42px;"></span>
+        <span class="spark" style="--x: 78%; --s: 6px; --d: 10s; --delay: -9s; --drift: -34px;"></span>
+        <span class="spark" style="--x: 90%; --s: 8px; --d: 9s; --delay: -5s; --drift: 26px;"></span>
 
-<div class="header">
-  <div class="luzes"></div>
+        <span class="ribbon" style="--x: 12%; --d: 9s; --delay: -4s; --drift: 45px; --r: 18deg;"></span>
+        <span class="ribbon" style="--x: 33%; --d: 12s; --delay: -8s; --drift: -35px; --r: -22deg;"></span>
+        <span class="ribbon" style="--x: 64%; --d: 10s; --delay: -2s; --drift: 28px; --r: 34deg;"></span>
+        <span class="ribbon" style="--x: 86%; --d: 11s; --delay: -6s; --drift: -42px; --r: -15deg;"></span>
+      </div>
 
-  <div class="logo-container">
-    <img src="LOGO.jpg">
-    <div class="nome">FRANKLIN LIMA</div>
-  </div>
-</div>
+      <div class="envelope-stage">
+        <p class="pre-title">Convite exclusivo</p>
 
-<div class="frase-box" onclick="revelar()">
-  CLIQUE PARA REVELAR A FRASE
-</div>
+        <div class="envelope" id="envelope" role="button" tabindex="0" aria-label="Clique para abrir o convite">
+          <div class="letter-preview">
+            O verdadeiro convite está sendo revelado
+          </div>
+          <div class="envelope-body"></div>
+          <div class="flap"></div>
+          <div class="seal">
+            <img src="LOGO.jpg" alt="Logo Franklin Lima 40 anos" />
+          </div>
+        </div>
 
-<div class="frase" id="frase">
-  AOS 40 ANOS VOCÊ NÃO COMEMORA IDADE,<br>
-  VOCÊ MUDA DE NÍVEL.
-</div>
+        <p class="open-text">Clique para abrir</p>
+      </div>
+    </section>
 
-<div class="img-section" id="img">
-  <center><img src="FESTA.jpg"></center>
-</div>
+    <section class="site" id="site" aria-label="Convite Franklin Lima 40 anos">
+      <div class="silver-noise" aria-hidden="true"></div>
+      <div class="balloons" aria-hidden="true">
+        <span class="balloon" style="--w: 92px; --x: -28px; --y: 16%; --d: 7s; --delay: -1s;"></span>
+        <span class="balloon" style="--w: 128px; --x: 82%; --y: 10%; --d: 8s; --delay: -3s;"></span>
+        <span class="balloon" style="--w: 78px; --x: 72%; --y: 62%; --d: 9s; --delay: -5s;"></span>
+        <span class="balloon" style="--w: 114px; --x: -36px; --y: 72%; --d: 8.5s; --delay: -2s;"></span>
+      </div>
 
-<div class="info" id="info">
-  <h2>SEXTA FEIRA</h2>
-  <h1>22 DE JANEIRO DE 2027</h1>
-  <p>ÀS 21:30</p>
+      <section class="section hero">
+        <div class="brand-card">
+          <img class="brand-logo" src="LOGO.jpg" alt="Logo Franklin Lima 40 anos" />
+          <h1 class="brand-name">Franklin<br>Lima</h1>
+          <p class="age">40 anos</p>
+          <div class="divider"></div>
+          <p class="quote">
+            Aos 40 anos você não comemora idade,
+            <span>você muda de nível.</span>
+          </p>
+        </div>
+      </section>
 
-  <p style="margin-top:20px;">
-    📍 ESPAÇO LOOP - RUA DAS FIGUEIRAS, 1382<br>
-    SÃO PAULO SP
-  </p>
+      <section class="section photo-section">
+        <div class="photo-wrap">
+          <div class="photo-frame" id="photoFrame">
+            <img class="party-photo" src="FESTA.jpg" alt="Espaço da festa" />
+          </div>
+          <p class="photo-caption">All black experience</p>
+        </div>
+      </section>
 
-  <button class="btn" onclick="abrirForm()">MARCAR PRESENÇA</button>
+      <section class="section actions">
+        <div>
+          <button class="lux-button" type="button" data-target="datePanel">
+            <span class="icon">📅</span>
+            Ver data e horário
+          </button>
+          <div class="reveal-panel" id="datePanel">
+            <div class="reveal-inner">
+              <div class="info-card">
+                <h2>Sexta feira</h2>
+                <strong>22</strong>
+                <p>de janeiro de 2027<br>às 21:30</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-  <form class="form" action="https://formsubmit.co/SEUEMAIL@gmail.com" method="POST">
-    <input type="text" name="nome" placeholder="Nome completo" required>
-    
-    <input type="hidden" name="_subject" value="Nova presença confirmada">
-    
-    <button class="btn">ENVIAR</button>
-  </form>
-</div>
+        <div>
+          <button class="lux-button" type="button" data-target="locationPanel">
+            <span class="icon">📍</span>
+            Ver localização
+          </button>
+          <div class="reveal-panel" id="locationPanel">
+            <div class="reveal-inner">
+              <div class="info-card">
+                <h2>Espaço Loop</h2>
+                <p>Rua das Figueiras, 1382<br>Jardim Santo André<br>São Paulo - SP</p>
+              </div>
+            </div>
+          </div>
+        </div>
 
-<script>
+        <div>
+          <button class="lux-button" type="button" data-target="presencePanel">
+            Confirmar presença
+          </button>
+          <div class="reveal-panel" id="presencePanel">
+            <div class="reveal-inner">
+              <form class="form-card" id="presenceForm">
+                <label for="fullName">Nome completo</label>
+                <input id="fullName" name="fullName" type="text" placeholder="Digite seu nome completo" autocomplete="name" required />
+                <button class="submit-button" type="submit">Enviar</button>
+                <div class="confirmed" id="confirmedMessage">Presença confirmada! Te espero lá...</div>
+                <div class="mini-list" id="localList"></div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </section>
+    </section>
+  </main>
 
-function revelar() {
-  document.querySelector(".frase-box").style.display = "none";
-  document.getElementById("frase").classList.add("show");
-}
+  <script>
+    const intro = document.getElementById("intro");
+    const site = document.getElementById("site");
+    const envelope = document.getElementById("envelope");
+    const photoFrame = document.getElementById("photoFrame");
+    const form = document.getElementById("presenceForm");
+    const fullName = document.getElementById("fullName");
+    const confirmedMessage = document.getElementById("confirmedMessage");
+    const localList = document.getElementById("localList");
 
-function abrirForm() {
-  document.querySelector(".form").style.display = "block";
-}
+    function openInvitation() {
+      if (envelope.classList.contains("open")) return;
 
-/* ANIMAÇÕES SCROLL */
-window.addEventListener("scroll", () => {
-  let img = document.getElementById("img");
-  let info = document.getElementById("info");
+      envelope.classList.add("open");
 
-  let pos = window.scrollY + window.innerHeight;
+      setTimeout(() => {
+        intro.classList.add("hide");
+        site.classList.add("show");
+        document.body.style.overflowY = "auto";
+      }, 1350);
+    }
 
-  if (pos > img.offsetTop) {
-    img.classList.add("show");
-  }
+    envelope.addEventListener("click", openInvitation);
+    envelope.addEventListener("keydown", (event) => {
+      if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        openInvitation();
+      }
+    });
 
-  if (pos > info.offsetTop) {
-    info.classList.add("show");
-  }
-});
+    document.querySelectorAll("[data-target]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const target = document.getElementById(button.dataset.target);
+        target.classList.toggle("open");
+      });
+    });
 
-</script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("show");
+        }
+      });
+    }, { threshold: 0.28 });
 
+    observer.observe(photoFrame);
+
+    function getGuestList() {
+      return JSON.parse(localStorage.getItem("franklin_guest_list") || "[]");
+    }
+
+    function saveGuest(name) {
+      const guests = getGuestList();
+      guests.push({
+        nome: name,
+        confirmadoEm: new Date().toLocaleString("pt-BR")
+      });
+      localStorage.setItem("franklin_guest_list", JSON.stringify(guests));
+      return guests;
+    }
+
+    function renderLocalList() {
+      const guests = getGuestList();
+
+      if (!guests.length) {
+        localList.classList.remove("show");
+        localList.innerHTML = "";
+        return;
+      }
+
+      localList.classList.add("show");
+      localList.innerHTML = `Salvo neste aparelho: ${guests.length} presença(s).`;
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const name = fullName.value.trim();
+
+      if (name.length < 3) {
+        fullName.focus();
+        return;
+      }
+
+      saveGuest(name);
+      confirmedMessage.classList.remove("show");
+
+      setTimeout(() => {
+        confirmedMessage.classList.add("show");
+        renderLocalList();
+      }, 80);
+
+      form.reset();
+    });
+
+    renderLocalList();
+  </script>
 </body>
 </html>
